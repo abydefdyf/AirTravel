@@ -6,7 +6,7 @@ public class Main {
 
 
         FligthFilter fligthFilter = new FligthFilter();
-        System.out.println("исключить: вылет до текущего момента времени");
+        System.out.println("исключить: вылет до текущего момента");
         for (var flight : fligthFilter.beforeCurrentTime(FlightBuilder.createFlights())){
             System.out.println(flight);
         }
