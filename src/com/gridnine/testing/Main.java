@@ -6,17 +6,17 @@ public class Main {
 
 
         FligthFilter fligthFilter = new FligthFilter();
-        System.out.println("исключить: вылет до текущего момента");
+        System.out.println("РёСЃРєРѕР±С‡РёС‚СЊ: РІС‹Р»РµС‚ РґРѕ С‚РµРєСѓС‰РµРіРѕ РјРѕРјРµРЅС‚Р° РІСЂРµРјРµРЅРё");
         for (var flight : fligthFilter.beforeCurrentTime(FlightBuilder.createFlights())){
             System.out.println(flight);
         }
 
-        System.out.println("исключить: имеются сегменты с датой прилёта раньше даты вылета");
+        System.out.println("РёСЃРєР»СЋС‡РёС‚СЊ: РёРјРµСЋС‚СЃСЏ СЃРµРіРјРµРЅС‚С‹ СЃ РґР°С‚РѕР№ РїСЂРёР»С‘С‚Р° СЂР°РЅСЊС€Рµ РґР°С‚С‹ РІС‹Р»РµС‚Р°");
         for (var flight : fligthFilter.invalidFlight(FlightBuilder.createFlights())){
             System.out.println(flight);
         }
 
-        System.out.println("исключить: общее время, проведённое на земле превышает два часа");
+        System.out.println("РёСЃРєР»СЋС‡РёС‚СЊ: РѕР±С‰РµРµ РІСЂРµРјСЏ, РїСЂРѕРІРµРґС‘РЅРЅРѕРµ РЅР° Р·РµРјР»Рµ РїСЂРµРІС‹С€Р°РµС‚ РґРІР° С‡Р°СЃР°");
         for (var flight : fligthFilter.totalTimeOnEarth(FlightBuilder.createFlights())){
             System.out.println(flight);
         }
