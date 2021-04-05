@@ -46,38 +46,19 @@ public class FligthFilter implements IFlightFilter {
 
 	@Override
 	public List<Flight> totalTimeOnEarth(List<Flight> flights) {
-		
+
 		List<Flight> filteredFlight = new LinkedList<>();
-		
-		Duration dateDifference;
-		
-		long FirstTransplant = 0;
-		
+
 		for (var flight : flights) {
-
-
-			if (flight.getSegments().size() == 1) {
-				filteredFlight.add(flight);
+			long transplant = 0;
+			for (var i = 0; i < flight.getSegments().size() - 1; i++) {
+				transplant += Duration.between(flight.getSegments().get(i).getArrivalDate(),
+						flight.getSegments().get(i + 1).getDepartureDate()).getSeconds();
 			}
-
-			if (flight.getSegments().size() == 2) {
-				dateDifference = Duration.between(flight.getSegments().get(0).getArrivalDate(),
-						flight.getSegments().get(1).getDepartureDate());
-				FirstTransplant = dateDifference.getSeconds();
-				if (dateDifference.getSeconds() <= 7200) {
-					filteredFlight.add(flight);
-				}
-			}else if (flight.getSegments().size() == 3) {
-				dateDifference = Duration.between(flight.getSegments().get(1).getArrivalDate(),
-						flight.getSegments().get(2).getDepartureDate());
-				if ((dateDifference.getSeconds() + FirstTransplant) <= 7200) {
-					filteredFlight.add(flight);
-				}
-
+			if (transplant <= 7200) {
+				filteredFlight.add(flight);
 			}
 		}
 		return filteredFlight;
-
 	}
-
 }
